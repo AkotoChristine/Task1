@@ -1,11 +1,15 @@
-function updateCurrentTime() {
-    const currentTimeElement = document.querySelector('[data-testid="currentUTCTime"]');
-    const now = new Date();
-    currentTimeElement.textContent = `UTC Time: ${now.toUTCString()}`;
+function updateTimeAndDay() {
+    const currentTime = new Date();
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const currentDay = daysOfWeek[currentTime.getUTCDay()];
+    const currentUTCTime = currentTime.toISOString();
+    
+    document.querySelector('[data-testid="currentDayOfTheWeek"]').textContent = `Day of the Week: ${currentDay}`;
+    document.querySelector('[data-testid="currentUTCTime"]').textContent = `UTC Time: ${currentUTCTime}`;
 }
 
-// Update the current time every second
-setInterval(updateCurrentTime, 1000);
+// Update time and day every second
+setInterval(updateTimeAndDay, 1000);
 
 // Initial update
-updateCurrentTime();
+updateTimeAndDay();
